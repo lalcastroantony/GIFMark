@@ -2,7 +2,7 @@
 //  GIFMarkUITestsLaunchTests.swift
 //  GIFMarkUITests
 //
-//  Created by lal-7695 on 15/07/22.
+//  Created by Lal Castro on 15/07/22.
 //
 
 import XCTest
