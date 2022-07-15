@@ -2,7 +2,7 @@
 //  SceneDelegate.swift
 //  GIFMark
 //
-//  Created by Lal Castro on 15/07/22.
+//  Created by lal.castro@icloud.com on 15/07/22.
 //
 
 import UIKit
