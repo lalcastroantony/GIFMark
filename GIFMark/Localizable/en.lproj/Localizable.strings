@@ -1,0 +1,13 @@
+/* 
+  Localizable.strings
+  GIFMark
+
+  Created by lal-7695 on 15/07/22.
+  
+*/
+"ListView.title" = "Trending";
+"FavouritesView.title" = "Favourites";
+"ListView.NavigationTitle" = "GIFMark";
+"Search" = "Search";
+"SearchBar.PlaceHolder" = "Search for GIFs";
+"PreviewView.Title" = "GIF Preview";

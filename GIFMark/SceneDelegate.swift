@@ -16,9 +16,33 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         // Use this method to optionally configure and attach the UIWindow `window` to the provided UIWindowScene `scene`.
         // If using a storyboard, the `window` property will automatically be initialized and attached to the scene.
         // This delegate does not imply the connecting scene or session are new (see `application:configurationForConnectingSceneSession` instead).
-        guard let _ = (scene as? UIWindowScene) else { return }
+        guard let windowScene = (scene as? UIWindowScene) else { return }
+        setupRootView(windowScene: windowScene)
     }
-
+    
+    
+    /// This will up the root view controllers.
+    ///
+    /// This function also will setup the ``HomeTabBarViewController``'s tabbar items.
+    /// - Parameter windowScene: scene object where the root view is going to be set
+    func setupRootView(windowScene: UIWindowScene) {
+        window = UIWindow(frame: windowScene.coordinateSpace.bounds)
+        window?.windowScene = windowScene
+        window?.makeKeyAndVisible()
+        let homeVC = HomeTabBarViewController()
+        homeVC.setViewControllers(TabBarItemsHelper.sharedInstance.tabBarItems.map({ item in
+            return item.vc
+        }), animated: false)
+        guard let items = homeVC.tabBar.items, let controllers = homeVC.viewControllers else {
+            return
+        }
+        for i in 0..<items.count {
+            items[i].image = UIImage.init(systemName: TabBarItemsHelper.sharedInstance.tabBarItems[i].image)!.imageWithoutBaseline()
+            controllers[i].title = TabBarItemsHelper.sharedInstance.tabBarItems[i].title.localized
+        }
+        window?.rootViewController = homeVC
+    }
+    
     func sceneDidDisconnect(_ scene: UIScene) {
         // Called as the scene is being released by the system.
         // This occurs shortly after the scene enters the background, or when its session is discarded.
