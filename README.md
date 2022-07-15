@@ -6,10 +6,18 @@ I have used Giphy API for this.
 
 Design Pattern: MVVM
 
-![IMG_5786](https://user-images.githubusercontent.com/87637097/179287942-fd518a00-c35e-47c1-a504-cab47b737e64.PNG) ![IMG_5787](https://user-images.githubusercontent.com/87637097/179288045-5154614d-2322-47aa-9bb3-f9c5bd6924df.PNG)
+<img width="272" alt="Screenshot 2022-06-11 at 2 52 07 AM" src="https://user-images.githubusercontent.com/87637097/179287942-fd518a00-c35e-47c1-a504-cab47b737e64.PNG"> 
+
+
+
+https://user-images.githubusercontent.com/87637097/179291158-a5b8d79c-61ff-49d1-9347-d41d052fa908.MP4
+
+
+
+<img width="272" alt="Screenshot 2022-06-11 at 2 52 07 AM" src="https://user-images.githubusercontent.com/87637097/179288045-5154614d-2322-47aa-9bb3-f9c5bd6924df.PNG">
 
 
 
 
-https://user-images.githubusercontent.com/87637097/179288626-12e083c3-ca17-4822-bfb3-7c98d0e75b40.MP4
+
 
