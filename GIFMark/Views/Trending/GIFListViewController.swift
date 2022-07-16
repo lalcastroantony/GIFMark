@@ -111,10 +111,12 @@ extension GIFListViewController: UISearchResultsUpdating {
         }
         timer?.invalidate()
         if text.isValidSearch {
-            timer = Timer.scheduledTimer(withTimeInterval: 0.5, repeats: false, block: { timer in
-                searchVc.viewModel.GIFs.value = []
-                searchVc.searchQuery = text
-            })
+            if text != searchVc.viewModel.query {
+                timer = Timer.scheduledTimer(withTimeInterval: 0.5, repeats: false, block: { timer in
+                    searchVc.viewModel.GIFs.value = []
+                    searchVc.searchQuery = text
+                })
+            }
         }
         else {
             searchVc.viewModel.GIFs.value = []
