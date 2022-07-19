@@ -5,7 +5,7 @@
 I have used Giphy API for this.<br>
 Pagination Done<br>
 UIKit <br>
-NO STORYBOARD <br>
+NO STORYBOARD - Fully programmatic <br>
 Design Pattern: MVVM <br>
 Unit Testing XCTestCases
 <pre>
