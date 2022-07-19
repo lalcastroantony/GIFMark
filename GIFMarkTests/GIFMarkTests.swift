@@ -32,5 +32,12 @@ class GIFMarkTests: XCTestCase {
             // Put the code you want to measure the time of here.
         }
     }
+    
+    func test_get_trendingGifs() {
+        let viewModelObject = TrendingViewModel()
+        viewModelObject.getTrendingGifs {
+            XCTAssertGreaterThan(viewModelObject.GIFs.value.count, 0)
+        }
+    }
 
 }
