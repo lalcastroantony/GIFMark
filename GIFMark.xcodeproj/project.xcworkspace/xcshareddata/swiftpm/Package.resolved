@@ -1,0 +1,14 @@
+{
+  "pins" : [
+    {
+      "identity" : "flanimatedimage",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/Flipboard/FLAnimatedImage.git",
+      "state" : {
+        "revision" : "e7f9fd4681ae41bf6f3056db08af4f401d61da52",
+        "version" : "1.0.16"
+      }
+    }
+  ],
+  "version" : 2
+}

@@ -15,8 +15,6 @@ class ImagePreviewViewController: UIViewController {
     var imageData: Data?
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
     }
     
     override func loadView() {
@@ -29,7 +27,6 @@ class ImagePreviewViewController: UIViewController {
         let share = UIBarButtonItem.init(image: UIImage.init(systemName: "square.and.arrow.up"), style: .plain, target: self, action: #selector(self.share(_:)))
         self.navigationItem.rightBarButtonItem  = share
         self.navigationItem.rightBarButtonItem?.isEnabled = false
-//        self.navigationController?.navigationBar.l
         
         self.view.backgroundColor = .systemBackground
        
@@ -37,7 +34,6 @@ class ImagePreviewViewController: UIViewController {
         self.view.addSubview(imageView)
         self.imageView.contentMode = .scaleAspectFit
         imageView.translatesAutoresizingMaskIntoConstraints = false
-//        imageView.backgroundColor = UIColor.getRandomColor()
         imageView.topSpace(with: self.view.safeTopAnchor).bottomSpace(with: self.view.bottomAnchor).leadingSpace().trailingSpace()
         
         loader = UIActivityIndicatorView.init(style: .large)
@@ -57,12 +53,13 @@ class ImagePreviewViewController: UIViewController {
             let activityVC = UIActivityViewController(activityItems: [data], applicationActivities: nil)
             self.navigationController?.present(activityVC, animated: true, completion: nil)
         }
-     
-//        self.navigationController?.dismiss(animated: true)
     }
     
     func setImage() {
-        if let images = gifData?["images"] as? [String: Any], let original = images["original"] as? [String: Any], let url = original["url"] as? String {
+        if let id = self.gifData?["id"] as? String, let data = GIFDataBaseHandler.shared.getSingleObjet(for: id)?.previewData {
+            self.setupAnimatedImage(data: data)
+        }
+        else if let images = gifData?["images"] as? [String: Any], let original = images["original"] as? [String: Any], let url = original["url"] as? String {
             loader.startAnimating()
             if let imageData = ImageDownloadCache.downloadImage(urlStr: url, completion: { [weak self] data, url in
                 self?.setupAnimatedImage(data: data)

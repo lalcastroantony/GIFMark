@@ -7,7 +7,7 @@
 
 import Foundation
 
-class ViewModel {
+class HomeViewModel {
     var offset = 0
     var limit = 20
     var hasMoreData = true

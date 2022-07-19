@@ -7,7 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		084F2AE428815924003DB4F1 /* GIFViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 084F2AE328815924003DB4F1 /* GIFViewModel.swift */; };
+		084CEAFA288735AF009D250A /* GIFEntity+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 084CEAF8288735AF009D250A /* GIFEntity+CoreDataClass.swift */; };
+		084CEB0128873EA9009D250A /* GIFEntity+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 084CEAFF28873EA9009D250A /* GIFEntity+CoreDataProperties.swift */; };
+		084F2AE428815924003DB4F1 /* HomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 084F2AE328815924003DB4F1 /* HomeViewModel.swift */; };
 		084F2AE628815958003DB4F1 /* ApiHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 084F2AE528815958003DB4F1 /* ApiHandler.swift */; };
 		084F2AEC2881622D003DB4F1 /* URLRequest+Additional.swift in Sources */ = {isa = PBXBuildFile; fileRef = 084F2AEB2881622D003DB4F1 /* URLRequest+Additional.swift */; };
 		084F2AEE28817AAC003DB4F1 /* UIView+Additional.swift in Sources */ = {isa = PBXBuildFile; fileRef = 084F2AED28817AAB003DB4F1 /* UIView+Additional.swift */; };
@@ -31,6 +33,8 @@
 		0891312B28813DD600950DFB /* TabBarItemsHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0891312A28813DD600950DFB /* TabBarItemsHelper.swift */; };
 		0891312E28813F2B00950DFB /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 0891313028813F2B00950DFB /* Localizable.strings */; };
 		0891313428813FBE00950DFB /* Strings+Additional.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0891313328813FBE00950DFB /* Strings+Additional.swift */; };
+		08BE822D28872ED000F13548 /* CoreDataStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08BE822C28872ED000F13548 /* CoreDataStack.swift */; };
+		08BE822F28872FEF00F13548 /* DataBaseHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08BE822E28872FEF00F13548 /* DataBaseHandler.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -51,7 +55,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		084F2AE328815924003DB4F1 /* GIFViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GIFViewModel.swift; sourceTree = "<group>"; };
+		084CEAF8288735AF009D250A /* GIFEntity+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "GIFEntity+CoreDataClass.swift"; sourceTree = "<group>"; };
+		084CEAFF28873EA9009D250A /* GIFEntity+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "GIFEntity+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		084F2AE328815924003DB4F1 /* HomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewModel.swift; sourceTree = "<group>"; };
 		084F2AE528815958003DB4F1 /* ApiHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiHandler.swift; sourceTree = "<group>"; };
 		084F2AEB2881622D003DB4F1 /* URLRequest+Additional.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "URLRequest+Additional.swift"; sourceTree = "<group>"; };
 		084F2AED28817AAB003DB4F1 /* UIView+Additional.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Additional.swift"; sourceTree = "<group>"; };
@@ -78,6 +84,8 @@
 		0891312A28813DD600950DFB /* TabBarItemsHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarItemsHelper.swift; sourceTree = "<group>"; };
 		0891312F28813F2B00950DFB /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		0891313328813FBE00950DFB /* Strings+Additional.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Strings+Additional.swift"; sourceTree = "<group>"; };
+		08BE822C28872ED000F13548 /* CoreDataStack.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataStack.swift; sourceTree = "<group>"; };
+		08BE822E28872FEF00F13548 /* DataBaseHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataBaseHandler.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -110,7 +118,6 @@
 			isa = PBXGroup;
 			children = (
 				0891312328812B7100950DFB /* GIFListViewController.swift */,
-				084F2AEF28817C24003DB4F1 /* GIFListTableViewCell.swift */,
 			);
 			path = Trending;
 			sourceTree = "<group>";
@@ -144,7 +151,7 @@
 		084F2AE82881596E003DB4F1 /* ViewModels */ = {
 			isa = PBXGroup;
 			children = (
-				084F2AE328815924003DB4F1 /* GIFViewModel.swift */,
+				084F2AE328815924003DB4F1 /* HomeViewModel.swift */,
 				084F2AF128817CEC003DB4F1 /* ObservableObject.swift */,
 			);
 			path = ViewModels;
@@ -153,6 +160,10 @@
 		084F2AE92881597A003DB4F1 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				084CEAFF28873EA9009D250A /* GIFEntity+CoreDataProperties.swift */,
+				084CEAF8288735AF009D250A /* GIFEntity+CoreDataClass.swift */,
+				08BE822C28872ED000F13548 /* CoreDataStack.swift */,
+				08BE822E28872FEF00F13548 /* DataBaseHandler.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -224,6 +235,7 @@
 		089131202881296200950DFB /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				08DF65CD2886BD1E002B9901 /* TableViewCell */,
 				084F2AE028814E58003DB4F1 /* Home */,
 				084F2ADE28814E0F003DB4F1 /* Favourites */,
 				084F2ADD28814E03003DB4F1 /* Trending */,
@@ -249,6 +261,14 @@
 				084F2AF828818E23003DB4F1 /* UIColor+Additional.swift */,
 			);
 			path = Utils;
+			sourceTree = "<group>";
+		};
+		08DF65CD2886BD1E002B9901 /* TableViewCell */ = {
+			isa = PBXGroup;
+			children = (
+				084F2AEF28817C24003DB4F1 /* GIFListTableViewCell.swift */,
+			);
+			path = TableViewCell;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -391,9 +411,11 @@
 				084F2AF028817C24003DB4F1 /* GIFListTableViewCell.swift in Sources */,
 				0891312628812BA500950DFB /* FavouritesViewController.swift in Sources */,
 				0891313428813FBE00950DFB /* Strings+Additional.swift in Sources */,
+				08BE822F28872FEF00F13548 /* DataBaseHandler.swift in Sources */,
 				089130F628810D7500950DFB /* GIFMark.xcdatamodeld in Sources */,
 				084F2AF228817CEC003DB4F1 /* ObservableObject.swift in Sources */,
 				089131222881297900950DFB /* HomeTabBarViewController.swift in Sources */,
+				084CEB0128873EA9009D250A /* GIFEntity+CoreDataProperties.swift in Sources */,
 				089130EC28810D7500950DFB /* AppDelegate.swift in Sources */,
 				084F2AF4288182B7003DB4F1 /* UIImage+Additional.swift in Sources */,
 				084F2AEC2881622D003DB4F1 /* URLRequest+Additional.swift in Sources */,
@@ -401,9 +423,11 @@
 				0891312428812B7100950DFB /* GIFListViewController.swift in Sources */,
 				0891312B28813DD600950DFB /* TabBarItemsHelper.swift in Sources */,
 				084F2AFB2881CE38003DB4F1 /* ImagePreviewViewController.swift in Sources */,
+				08BE822D28872ED000F13548 /* CoreDataStack.swift in Sources */,
+				084CEAFA288735AF009D250A /* GIFEntity+CoreDataClass.swift in Sources */,
 				089130EE28810D7500950DFB /* SceneDelegate.swift in Sources */,
 				084F2AF928818E23003DB4F1 /* UIColor+Additional.swift in Sources */,
-				084F2AE428815924003DB4F1 /* GIFViewModel.swift in Sources */,
+				084F2AE428815924003DB4F1 /* HomeViewModel.swift in Sources */,
 				084F2AEE28817AAC003DB4F1 /* UIView+Additional.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

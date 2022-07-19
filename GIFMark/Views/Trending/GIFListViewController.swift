@@ -12,7 +12,7 @@ import UIKit
 class GIFListViewController: UIViewController {
     
     var searchController: UISearchController?
-    let viewModel = ViewModel()
+    let viewModel = HomeViewModel()
     var tableView: UITableView!
     var activityIndicator: UIActivityIndicatorView!
     var timer: Timer?
