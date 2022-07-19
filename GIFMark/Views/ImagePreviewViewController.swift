@@ -56,10 +56,7 @@ class ImagePreviewViewController: UIViewController {
     }
     
     func setImage() {
-        if let id = self.gifData?["id"] as? String, let data = GIFDataBaseHandler.shared.getSingleObjet(for: id)?.previewData {
-            self.setupAnimatedImage(data: data)
-        }
-        else if let images = gifData?["images"] as? [String: Any], let original = images["original"] as? [String: Any], let url = original["url"] as? String {
+        if let images = gifData?["images"] as? [String: Any], let original = images["original"] as? [String: Any], let url = original["url"] as? String {
             loader.startAnimating()
             if let imageData = ImageDownloadCache.downloadImage(urlStr: url, completion: { [weak self] data, url in
                 self?.setupAnimatedImage(data: data)
@@ -67,8 +64,6 @@ class ImagePreviewViewController: UIViewController {
                 self.setupAnimatedImage(data: imageData)
             }
         }
-        
-        
     }
     
     func setupAnimatedImage(data: Data?) {
