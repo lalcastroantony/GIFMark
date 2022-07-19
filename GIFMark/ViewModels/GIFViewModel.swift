@@ -7,7 +7,7 @@
 
 import Foundation
 
-class TrendingViewModel {
+class ViewModel {
     var offset = 0
     var limit = 20
     var hasMoreData = true

@@ -9,12 +9,15 @@ import XCTest
 @testable import GIFMark
 
 class GIFMarkTests: XCTestCase {
+    var viewModelObject: ViewModel!
 
     override func setUpWithError() throws {
+        viewModelObject = ViewModel()
         // Put setup code here. This method is called before the invocation of each test method in the class.
     }
 
     override func tearDownWithError() throws {
+        viewModelObject = nil
         // Put teardown code here. This method is called after the invocation of each test method in the class.
     }
 
@@ -34,9 +37,34 @@ class GIFMarkTests: XCTestCase {
     }
     
     func test_get_trendingGifs() {
-        let viewModelObject = TrendingViewModel()
         viewModelObject.getTrendingGifs {
-            XCTAssertGreaterThan(viewModelObject.GIFs.value.count, 0)
+            XCTAssertGreaterThan(self.viewModelObject.GIFs.value.count, 0)
+        }
+    }
+
+    func test_searchgifs() {
+        viewModelObject.search(for: "cricket") {
+            XCTAssertGreaterThan(self.viewModelObject.GIFs.value.count, 0)
+        }
+    }
+    
+    func test_trending() {
+        viewModelObject.limit = 10
+        viewModelObject.getTrendingGifs {
+            XCTAssertEqual(self.viewModelObject.limit, self.viewModelObject.GIFs.value.count)
+        }
+    }
+    
+    func test_request_payload() {
+        let payload = PayloadObject()
+        XCTAssertNotNil(payload.payloadDictionary)
+    }
+    
+    func test_response_Object() {
+        ApiHandler.getData(for: .trending, payloadObject: PayloadObject()) { responseObject in
+            XCTAssertNotNil(responseObject)
+        } onFailure: {
+            XCTFail("Could not get response object")
         }
     }
 

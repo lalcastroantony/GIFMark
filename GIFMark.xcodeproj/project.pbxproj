@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		084F2AE428815924003DB4F1 /* Trending+ViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 084F2AE328815924003DB4F1 /* Trending+ViewModel.swift */; };
+		084F2AE428815924003DB4F1 /* GIFViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 084F2AE328815924003DB4F1 /* GIFViewModel.swift */; };
 		084F2AE628815958003DB4F1 /* ApiHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 084F2AE528815958003DB4F1 /* ApiHandler.swift */; };
 		084F2AEC2881622D003DB4F1 /* URLRequest+Additional.swift in Sources */ = {isa = PBXBuildFile; fileRef = 084F2AEB2881622D003DB4F1 /* URLRequest+Additional.swift */; };
 		084F2AEE28817AAC003DB4F1 /* UIView+Additional.swift in Sources */ = {isa = PBXBuildFile; fileRef = 084F2AED28817AAB003DB4F1 /* UIView+Additional.swift */; };
@@ -51,7 +51,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		084F2AE328815924003DB4F1 /* Trending+ViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Trending+ViewModel.swift"; sourceTree = "<group>"; };
+		084F2AE328815924003DB4F1 /* GIFViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GIFViewModel.swift; sourceTree = "<group>"; };
 		084F2AE528815958003DB4F1 /* ApiHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiHandler.swift; sourceTree = "<group>"; };
 		084F2AEB2881622D003DB4F1 /* URLRequest+Additional.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "URLRequest+Additional.swift"; sourceTree = "<group>"; };
 		084F2AED28817AAB003DB4F1 /* UIView+Additional.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Additional.swift"; sourceTree = "<group>"; };
@@ -144,7 +144,7 @@
 		084F2AE82881596E003DB4F1 /* ViewModels */ = {
 			isa = PBXGroup;
 			children = (
-				084F2AE328815924003DB4F1 /* Trending+ViewModel.swift */,
+				084F2AE328815924003DB4F1 /* GIFViewModel.swift */,
 				084F2AF128817CEC003DB4F1 /* ObservableObject.swift */,
 			);
 			path = ViewModels;
@@ -403,7 +403,7 @@
 				084F2AFB2881CE38003DB4F1 /* ImagePreviewViewController.swift in Sources */,
 				089130EE28810D7500950DFB /* SceneDelegate.swift in Sources */,
 				084F2AF928818E23003DB4F1 /* UIColor+Additional.swift in Sources */,
-				084F2AE428815924003DB4F1 /* Trending+ViewModel.swift in Sources */,
+				084F2AE428815924003DB4F1 /* GIFViewModel.swift in Sources */,
 				084F2AEE28817AAC003DB4F1 /* UIView+Additional.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
