@@ -12,8 +12,11 @@ class GIFViewModel {
     var imageData: Data?
     var originalUrl: String?
     
-    init(gifData: [String: Any]) {
-        self.id = gifData["id"] as? String
+    init?(gifData: [String: Any]) {
+        guard let id = gifData["id"] as? String else {
+            return nil
+        }
+        self.id = id
         if let images = gifData["images"] as? [String: Any] {
             if let preview = images["preview_gif"] as? [String: Any], let url = preview["url"] as? String {
                 self.imageUrl = url

@@ -42,5 +42,16 @@ class GIFMarkTests: XCTestCase {
             XCTFail("Could not get response object")
         }
     }
+    
+    func test_GifViewModel() {
+        ApiHandler.getData(for: .trending, payloadObject: PayloadObject()) { responseObject in
+            if let gifs = responseObject.data as? [[String: Any]], let first = gifs.first {
+                XCTAssertNotNil(GIFViewModel.init(gifData: first))
+            }
+        } onFailure: {
+            XCTFail("Could not get response object")
+        }
+
+    }
 
 }
