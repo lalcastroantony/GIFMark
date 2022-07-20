@@ -2,7 +2,7 @@
 //  FavouritesCollectionViewCell.swift
 //  GIFMark
 //
-//  Created by lal-7695 on 20/07/22.
+//  Created by lal.castro@icloud.com on 20/07/22.
 //
 
 import UIKit
