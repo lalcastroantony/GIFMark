@@ -18,6 +18,6 @@ extension String {
     }
     
     var isValidSearch: Bool {
-        return self.trimSpace().count > 2 || Int(self) != nil
+        return self.trimSpace().count > 0
     }
 }

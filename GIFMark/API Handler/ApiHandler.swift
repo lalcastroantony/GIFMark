@@ -57,8 +57,7 @@ enum APIEndPoint {
 }
 
 class ApiHandler {
-
-    static func getData(for endPoint: APIEndPoint,payloadObject: PayloadObject, onSuccess: @escaping (_ responseObject: ResponseObject)->(), onFailure: @escaping ()->() ) {
+    static func getData(for endPoint: APIEndPoint, payloadObject: PayloadObject, onSuccess: @escaping (_ responseObject: ResponseObject)->(), onFailure: @escaping ()->() ) {
         URLRequest.dataTask(endPoint: endPoint.getUrl(), method: .GET, payload: payloadObject.payloadDictionary) { data, response, error in
             if response?.isSuccess() ?? false {
                 if let dataObj = data, let jsonResponse = try? JSONSerialization.jsonObject(with: dataObj) as? [String: Any], let responseData = jsonResponse["data"], let meta = jsonResponse["meta"] as? [String: Any] {

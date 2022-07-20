@@ -8,60 +8,6 @@
 import Foundation
 import UIKit
 
-extension UIView {
-    func heightCoveredByKeyboardOfSize(keyboardSize: CGSize) -> CGFloat {
-        let frameInWindow = convert(bounds, to: nil)
-        guard let windowBounds = window?.bounds else { return 0 }
-        
-        let keyboardTop = windowBounds.size.height - keyboardSize.height
-        let viewBottom = frameInWindow.origin.y + frameInWindow.size.height
-        
-        return max(0, viewBottom - keyboardTop)
-    }
-    func findViewController() -> UIViewController? {
-        if let nextResponder = self.next as? UIViewController {
-            return nextResponder
-        } else if let nextResponder = self.next as? UIView {
-            return nextResponder.findViewController()
-        } else {
-            return nil
-        }
-    }
-    
-    func withBgColor(color: UIColor) -> UIView {
-        self.backgroundColor = color
-        return self
-    }
-
-    
-    func fadeTransition(_ duration:CFTimeInterval) {
-        let animation:CATransition = CATransition()
-        animation.timingFunction = CAMediaTimingFunction(name:
-            CAMediaTimingFunctionName.easeInEaseOut)
-        animation.type = CATransitionType.fade
-        animation.duration = duration
-        self.layer.add(animation, forKey: convertFromCATransitionType(CATransitionType.fade))
-    }
-  
-    
-    func roundCorners(_ corners: UIRectCorner, radius: CGFloat) {
-        let path = UIBezierPath(roundedRect: self.bounds, byRoundingCorners: corners, cornerRadii: CGSize(width: radius, height: radius))
-        let mask = CAShapeLayer()
-        mask.path = path.cgPath
-        self.layer.mask = mask
-    }
-    
-    func removeRoundedCorners() {
-        self.layer.mask = nil
-    }
-}
-
-
-// Helper function inserted by Swift 4.2 migrator.
-fileprivate func convertFromCATransitionType(_ input: CATransitionType) -> String {
-    return input.rawValue
-}
-
 extension UIView{
     
     @discardableResult
@@ -200,7 +146,6 @@ extension UIView{
 
 extension UIView{
     //guide
-    
     @discardableResult
     func centerXAlign(withConstraint: UILayoutGuide, constant: CGFloat = 0, priority: UILayoutPriority = .required)->UIView{
         let constraint = self.centerXAnchor.constraint(equalTo: withConstraint.centerXAnchor, constant: constant)
@@ -322,36 +267,6 @@ extension UIView{
         constraint.priority = priority
         return self
     }
-    
-    func addShadow(shadowColor: UIColor, offSet: CGSize, opacity: Float, shadowRadius: CGFloat, cornerRadius: CGFloat, corners: UIRectCorner, fillColor: UIColor = .clear) {
-        
-        let customShadowLayerName: String = "custom_shadow_layer"
-        
-        if let subLayers = layer.sublayers {
-            let layersToRemove = subLayers.filter { layer in
-                return layer.name == customShadowLayerName
-            }
-            for layer in layersToRemove {
-                layer.removeFromSuperlayer()
-            }
-        }
-        
-        let shadowLayer = CAShapeLayer()
-        let size = CGSize(width: cornerRadius, height: cornerRadius)
-        let cgPath = UIBezierPath(roundedRect: self.bounds, byRoundingCorners: corners, cornerRadii: size).cgPath //1
-        shadowLayer.name = customShadowLayerName
-        shadowLayer.path = cgPath //2
-        shadowLayer.fillColor = fillColor.cgColor //3
-        shadowLayer.shadowColor = shadowColor.cgColor //4
-        shadowLayer.shadowPath = cgPath
-        shadowLayer.shadowOffset = offSet //5
-        shadowLayer.shadowOpacity = opacity
-        shadowLayer.shadowRadius = shadowRadius
-        self.layer.masksToBounds = false
-        self.layer.insertSublayer(shadowLayer, below: nil)
-    }
-
-    
 }
 
 extension UIView {

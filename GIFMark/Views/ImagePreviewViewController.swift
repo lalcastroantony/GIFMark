@@ -72,8 +72,6 @@ class ImagePreviewViewController: UIViewController {
         let image = FLAnimatedImage.init(animatedGIFData: data)
         self.imageView?.animatedImage = image
         self.imageData = data
-        
-     
     }
     
 
