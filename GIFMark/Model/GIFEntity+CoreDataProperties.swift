@@ -18,6 +18,8 @@ extension GIFEntity {
 
     @NSManaged public var gifId: String?
     @NSManaged public var previewData: Data?
+    @NSManaged public var imageUrl: String?
+    @NSManaged public var originalUrl: String?
 
 }
 

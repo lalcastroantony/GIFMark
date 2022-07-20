@@ -9,15 +9,14 @@ import UIKit
 import FLAnimatedImage
 
 
-
 class GIFListTableViewCell: UITableViewCell {
     
     var gifImageView: FLAnimatedImageView!
-    var imageUrl: String?
     var favouriteButton: UIButton!
     var buttonContainer: UIView!
-    var id: String?
-    var imageData: Data?
+    
+    var viewModel: GIFViewModel?
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
@@ -31,7 +30,7 @@ class GIFListTableViewCell: UITableViewCell {
     
     override func prepareForReuse() {
         favouriteButton.isSelected = false
-        imageUrl = nil
+        viewModel?.imageUrl = nil
         gifImageView.animatedImage = nil
         gifImageView.stopAnimating()
         gifImageView.backgroundColor = .systemGray
@@ -43,7 +42,6 @@ class GIFListTableViewCell: UITableViewCell {
     
     
     func initViews() {
-        let randomColor = UIColor.getRandomColor()
         gifImageView = FLAnimatedImageView.init()
         gifImageView.contentMode = .scaleToFill
         self.contentView.addSubview(gifImageView)
@@ -53,24 +51,34 @@ class GIFListTableViewCell: UITableViewCell {
         buttonContainer.backgroundColor = .white
         buttonContainer.translatesAutoresizingMaskIntoConstraints = false
         favouriteButton = UIButton.init(type: .custom)
-        favouriteButton.tintColor = randomColor
+        favouriteButton.tintColor = UIColor.getRandomColor()
         favouriteButton.setBackgroundImage(UIImage.init(systemName: "heart"), for: .normal)
         favouriteButton.setBackgroundImage(UIImage.init(systemName: "heart.fill"), for: .selected)
         favouriteButton.titleLabel?.font = UIFont.systemFont(ofSize: 30)
         buttonContainer.addSubview(favouriteButton)
         favouriteButton.translatesAutoresizingMaskIntoConstraints = false
         favouriteButton.addTarget(self, action: #selector(self.favouriteButtonDidTap(_:)), for: .touchUpInside)
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(self.updateFavourite(notification:)), name: .updateFavourite, object: nil)
+    }
+    
+    @objc func updateFavourite(notification: NSNotification) {
+        DispatchQueue.main.async {
+            if let userInfo = notification.userInfo as? [String: Any], let id = userInfo["id"] as? String {
+                if self.viewModel?.id == id {
+                    self.favouriteButton.isSelected = GIFDataBaseHandler.shared.isFavouriteGIF(id: id)
+                }
+            }
+        }
     }
     
     @objc func favouriteButtonDidTap(_ sender: Any) {
         favouriteButton.isSelected = !favouriteButton.isSelected
-        if let id = id {
-            if favouriteButton.isSelected {
-                GIFDataBaseHandler.shared.addToFavourites(id: id, data: self.imageData)
-            }
-            else {
-                GIFDataBaseHandler.shared.removeFromFavourites(id: id)
-            }
+        if favouriteButton.isSelected {
+            self.viewModel?.addToFavourite()
+        }
+        else {
+            self.viewModel?.removeFromFavourite()
         }
     }
     
@@ -84,27 +92,28 @@ class GIFListTableViewCell: UITableViewCell {
         buttonContainer.layer.borderWidth = 2.0
     }
     
-    func updateCell(for GIF: [String: Any]) {
+    func updateCell(for viewModel: GIFViewModel?) {
         gifImageView.backgroundColor = UIColor.getRandomColor()
-        if let id = GIF["id"] as? String {
-            self.id = id
+        self.viewModel = viewModel
+        if let id = self.viewModel?.id {
             self.favouriteButton.isSelected = GIFDataBaseHandler.shared.isFavouriteGIF(id: id)
-            if let images = GIF["images"] as? [String: Any], let preview = images["preview_gif"] as? [String: Any], let url = preview["url"] as? String {
-                self.imageUrl = url
-                let data = ImageDownloadCache.downloadImage(urlStr: url, completion: { data, url in
-                    if self.imageUrl == url {
-                        self.setImageWithData(data: data)
-                    }
-                })
-                self.setImageWithData(data: data)
-            }
         }
-        
+        if let imageData = self.viewModel?.imageData {
+            self.setImageWithData(data: imageData)
+        }
+        else if let url = self.viewModel?.imageUrl {
+            let data = ImageDownloadCache.downloadImage(urlStr: url, completion: { data, url in
+                if self.viewModel?.imageUrl == url {
+                    self.setImageWithData(data: data)
+                }
+            })
+            self.setImageWithData(data: data)
+        }
     }
     
     func setImageWithData(data: Data?) {
         if let data = data {
-            self.imageData = data
+            self.viewModel?.imageData = data
             let image = FLAnimatedImage.init(animatedGIFData: data)
             self.gifImageView.animatedImage = image
         }
@@ -117,4 +126,7 @@ class GIFListTableViewCell: UITableViewCell {
     }
 
 }
+
+
+
 

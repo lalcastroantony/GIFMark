@@ -2,9 +2,11 @@
 <model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="20086" systemVersion="21F79" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
     <entity name="GIFEntity" representedClassName="GIFEntity" syncable="YES">
         <attribute name="gifId" optional="YES" attributeType="String"/>
+        <attribute name="imageUrl" optional="YES" attributeType="String"/>
+        <attribute name="originalUrl" optional="YES" attributeType="String"/>
         <attribute name="previewData" optional="YES" attributeType="Binary" allowsExternalBinaryDataStorage="YES"/>
     </entity>
     <elements>
-        <element name="GIFEntity" positionX="-63" positionY="-18" width="128" height="59"/>
+        <element name="GIFEntity" positionX="-63" positionY="-18" width="128" height="89"/>
     </elements>
 </model>

@@ -70,8 +70,6 @@ class GIFListViewController: UIViewController {
         activityIndicator.translatesAutoresizingMaskIntoConstraints = false
         activityIndicator.topSpace(constant: 100).centerXAlign()
         activityIndicator.hidesWhenStopped = true
-        
-        self.tabBarController?.delegate = self
     }
     
     func getFooterView() -> UIView? {
@@ -135,7 +133,8 @@ extension GIFListViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "gifCell", for: indexPath) as! GIFListTableViewCell
-        cell.updateCell(for: self.viewModel.GIFs.value[indexPath.row])
+        let gifData = self.viewModel.GIFs.value[indexPath.row]
+        cell.updateCell(for: GIFViewModel.init(gifData: gifData))
         cell.selectionStyle = .none
         return cell
     }
@@ -146,7 +145,8 @@ extension GIFListViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let previewVC = ImagePreviewViewController()
-        previewVC.gifData = self.viewModel.GIFs.value[indexPath.row]
+        let gifData = self.viewModel.GIFs.value[indexPath.row]
+        previewVC.viewModel = GIFViewModel.init(gifData: gifData)
         self.present(UINavigationController.init(rootViewController: previewVC), animated: true)
     }
     
@@ -163,12 +163,3 @@ extension GIFListViewController: UITableViewDelegate, UITableViewDataSource {
     }
 }
 
-extension GIFListViewController: UITabBarControllerDelegate {
-    func tabBarController(_ tabBarController: UITabBarController, didSelect viewController: UIViewController) {
-        if (viewController as? UINavigationController)?.children[0] == self {
-            if self.tableView.numberOfRows(inSection: 0) > 0 {
-                self.tableView.scrollToRow(at: IndexPath.init(row: 0, section: 0), at: .top, animated: true)
-            }
-        }
-    }
-}

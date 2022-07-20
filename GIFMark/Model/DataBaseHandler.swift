@@ -7,16 +7,20 @@
 
 import Foundation
 import CoreData
+import UIKit
 class GIFDataBaseHandler {
     private init(){}
     static let shared = GIFDataBaseHandler()
     lazy var coreDataStack = CoreDataStack(modelName: "GIFMark")
         
-    func addToFavourites(id: String, data: Data?) {
-        if self.isFavouriteGIF(id: id) == false {
+    func addToFavourites(viewModel: GIFViewModel) {
+        self.vibrate()
+        if self.isFavouriteGIF(id: viewModel.id) == false {
             let gif = GIFEntity.init(context: coreDataStack.managedContext)
-            gif.gifId = id
-            gif.previewData = data
+            gif.gifId = viewModel.id
+            gif.previewData = viewModel.imageData
+            gif.imageUrl = viewModel.imageUrl
+            gif.originalUrl = viewModel.originalUrl
             coreDataStack.saveContext()
         }
     }
@@ -32,6 +36,7 @@ class GIFDataBaseHandler {
     }
     
     func removeFromFavourites(id: String) {
+        self.vibrate()
         let predicate = NSPredicate.init(format: "%K = %@", #keyPath(GIFEntity.gifId), id)
         let fetch = GIFEntity.fetchRequest()
         fetch.predicate = predicate
@@ -41,7 +46,10 @@ class GIFDataBaseHandler {
         }
     }
     
-    func isFavouriteGIF(id: String) -> Bool {
+    func isFavouriteGIF(id: String?) -> Bool {
+        guard let id = id else {
+            return false
+        }
         let predicate = NSPredicate.init(format: "%K = %@", #keyPath(GIFEntity.gifId), id)
         let fetch = GIFEntity.fetchRequest()
         fetch.predicate = predicate
@@ -50,4 +58,10 @@ class GIFDataBaseHandler {
         }
         return false
     }
+    
+    func vibrate() {
+        let generator = UIImpactFeedbackGenerator(style: .light)
+        generator.impactOccurred()
+    }
+    
 }
