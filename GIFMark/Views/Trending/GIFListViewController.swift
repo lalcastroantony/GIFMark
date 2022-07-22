@@ -41,7 +41,7 @@ class GIFListViewController: UIViewController {
         loadData()
     }
     
-    func loadData() {
+    private func loadData() {
         if !viewModel.isSearching {
             activityIndicator.startAnimating()
             viewModel.getTrendingGifs {
@@ -50,7 +50,7 @@ class GIFListViewController: UIViewController {
     }
     
     /// This will setup child views
-    func setupViews() {
+    private func setupViews() {
         self.navigationController?.navigationBar.prefersLargeTitles = true
         self.navigationController?.navigationItem.largeTitleDisplayMode = .never
         self.navigationItem.title = "ListView.NavigationTitle".localized
@@ -72,7 +72,7 @@ class GIFListViewController: UIViewController {
         activityIndicator.hidesWhenStopped = true
     }
     
-    func getFooterView() -> UIView? {
+    private func getFooterView() -> UIView? {
         if (searchQuery?.isValidSearch ?? false && viewModel.GIFs.value.count > 0) || viewModel.isSearching == false {
             let footerView = UIView.init(frame: CGRect.init(x: 0, y: 0, width: self.view.frame.size.width, height: 100))
             let bottomSpinner = UIActivityIndicatorView.init(style: .medium)
@@ -84,7 +84,7 @@ class GIFListViewController: UIViewController {
         return nil
     }
     
-    func setupSearchController() {
+    private func setupSearchController() {
         let searchResultsController = GIFListViewController()
         searchResultsController.viewModel.isSearching = true
         searchController = UISearchController.init(searchResultsController: searchResultsController)
@@ -93,7 +93,7 @@ class GIFListViewController: UIViewController {
         searchController?.searchBar.placeholder = "SearchBar.PlaceHolder".localized
     }
     
-    func setupBinders() {
+    private func setupBinders() {
            viewModel.GIFs.bind { [weak self] message in
                DispatchQueue.main.async {
                    self?.tableView?.reloadData()

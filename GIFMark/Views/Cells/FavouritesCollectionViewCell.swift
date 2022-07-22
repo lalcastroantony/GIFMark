@@ -22,13 +22,14 @@ class FavouritesCollectionViewCell: UICollectionViewCell {
     }
     
     override func prepareForReuse() {
+        super.prepareForReuse()
         viewModel = nil
         gifImageView.animatedImage = nil
         gifImageView.stopAnimating()
         gifImageView.backgroundColor = .systemGray
     }
     
-    func initViews() {
+    private func initViews() {
         gifImageView = FLAnimatedImageView.init()
         gifImageView.contentMode = .scaleToFill
         self.contentView.addSubview(gifImageView)
@@ -51,7 +52,7 @@ class FavouritesCollectionViewCell: UICollectionViewCell {
             self.setImageWithData(data: data)
         }
     }
-    func setImageWithData(data: Data?) {
+    private func setImageWithData(data: Data?) {
         if let data = data {
             self.viewModel?.imageData = data
             let image = FLAnimatedImage.init(animatedGIFData: data)

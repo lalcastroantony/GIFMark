@@ -25,7 +25,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     ///
     /// This function also will setup the ``HomeTabBarViewController``'s tabbar items.
     /// - Parameter windowScene: scene object where the root view is going to be set
-    func setupRootView(windowScene: UIWindowScene) {
+    private func setupRootView(windowScene: UIWindowScene) {
         window = UIWindow(frame: windowScene.coordinateSpace.bounds)
         window?.windowScene = windowScene
         window?.makeKeyAndVisible()

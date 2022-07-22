@@ -94,7 +94,7 @@ class ImagePreviewViewController: UIViewController {
         }
     }
     
-    func setImage() {
+    private func setImage() {
         if let url = self.viewModel?.originalUrl {
             loader.startAnimating()
             if let imageData = ImageDownloadCache.downloadImage(urlStr: url, completion: { [weak self] data, url in
@@ -105,7 +105,7 @@ class ImagePreviewViewController: UIViewController {
         }
     }
     
-    func setupAnimatedImage(data: Data?) {
+    private func setupAnimatedImage(data: Data?) {
         self.loader.stopAnimating()
         self.navigationItem.rightBarButtonItem?.isEnabled = true
         let image = FLAnimatedImage.init(animatedGIFData: data)

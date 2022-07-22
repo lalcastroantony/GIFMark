@@ -59,7 +59,7 @@ class GIFDataBaseHandler {
         return false
     }
     
-    func vibrate() {
+    private func vibrate() {
         let generator = UIImpactFeedbackGenerator(style: .light)
         generator.impactOccurred()
     }

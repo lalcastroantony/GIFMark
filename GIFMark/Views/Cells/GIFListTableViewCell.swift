@@ -29,6 +29,7 @@ class GIFListTableViewCell: UITableViewCell {
     }
     
     override func prepareForReuse() {
+        super.prepareForReuse()
         favouriteButton.isSelected = false
         viewModel?.imageUrl = nil
         gifImageView.animatedImage = nil
@@ -41,7 +42,7 @@ class GIFListTableViewCell: UITableViewCell {
     }
     
     
-    func initViews() {
+    private func initViews() {
         gifImageView = FLAnimatedImageView.init()
         gifImageView.contentMode = .scaleToFill
         self.contentView.addSubview(gifImageView)
@@ -82,7 +83,7 @@ class GIFListTableViewCell: UITableViewCell {
         }
     }
     
-    func updateLayouts() {
+    private func updateLayouts() {
         gifImageView.leadingSpace(constant: 10).trailingSpace(constant: -10).topSpace(constant: 10).bottomSpace(constant: -10).heightConstraint(constant: 200)
         buttonContainer.topSpace(constant: 16).trailingSpace(constant: -16).heightConstraint(constant: 40).widthConstraint(constant: 40)
         favouriteButton.widthConstraint(constant: 33).heightConstraint(constant: 33).centerXAlign().centerYAlign()
@@ -111,7 +112,7 @@ class GIFListTableViewCell: UITableViewCell {
         }
     }
     
-    func setImageWithData(data: Data?) {
+    private func setImageWithData(data: Data?) {
         if let data = data {
             self.viewModel?.imageData = data
             let image = FLAnimatedImage.init(animatedGIFData: data)
